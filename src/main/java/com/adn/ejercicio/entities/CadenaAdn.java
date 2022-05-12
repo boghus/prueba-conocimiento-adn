@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import com.adn.ejercicio.services.MutationService;
-import lombok.NonNull;
+
 
 @Entity
 public class CadenaAdn implements Serializable {
@@ -22,7 +22,7 @@ public class CadenaAdn implements Serializable {
 	private String[] cadenas;
 	
 	private Date dateCreated;
-	@NonNull
+	
 	private Boolean mutation;
 	
 	
