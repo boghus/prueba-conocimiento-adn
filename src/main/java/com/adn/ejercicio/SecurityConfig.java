@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.adn.ejercicio.services.UsuarioService;
 
@@ -42,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 @Override
 	 protected void configure(HttpSecurity http) throws Exception {
 		 http.authorizeRequests()
+         .antMatchers(resources).permitAll()
          .antMatchers("/login").permitAll()
          .antMatchers("/mutation/**").permitAll()
          .antMatchers("/cadenaAdn/**").permitAll()
@@ -50,13 +52,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          .and()
              .formLogin()
              .loginPage("/login")
-             .defaultSuccessUrl("/menu")
+             .defaultSuccessUrl("/inicio")
              .failureUrl("/login?error=true")
              .permitAll()
          .and()
              .logout()
-             .logoutSuccessUrl("/login?logout=true")
+             .logoutUrl("/logout")   
+             .logoutSuccessUrl("/login")
              .invalidateHttpSession(true)
+             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
              .permitAll()
           .and()
              .csrf()
