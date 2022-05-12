@@ -1,6 +1,7 @@
 package com.adn.ejercicio.services;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.math3.util.Precision;
@@ -35,7 +36,7 @@ public class CadenaAdnService {
 	
 	public Integer totalMutationTrue(){
 		return cadenaAdnDAO.findAllByMutation(true).size();
-	}
+	}	
 	
 	public Integer totalMutationFalse(){
 		return cadenaAdnDAO.findAllByMutation(false).size();
@@ -58,6 +59,17 @@ public class CadenaAdnService {
 		result.put("count_no_mutation",numNoMutation);
 		result.put("ratio",Precision.round(ratio,2));
 		
+		return result;
+		
+	}
+
+
+	public Map<String, Object> getMapMutation(Boolean mutation) {
+		HashMap<String, Object> result = new HashMap<>();
+		
+		List<CadenaAdn> cadena = cadenaAdnDAO.findAllByMutation(mutation);
+		result.put("total", cadena.size());
+		result.put("data", cadena);
 		return result;
 		
 	}
