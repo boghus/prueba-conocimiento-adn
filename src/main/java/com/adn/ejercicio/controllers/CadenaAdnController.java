@@ -1,6 +1,8 @@
 package com.adn.ejercicio.controllers;
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,6 +32,16 @@ public class CadenaAdnController {
 	public ResponseEntity<CadenaAdn> create(@RequestBody CadenaAdn cadena){
 		CadenaAdn newCadena = new CadenaAdn(cadena.getCadenas());
 		return ResponseEntity.ok(cadenaAdnService.create(newCadena));
+	}
+
+	@GetMapping(value= "/getMutation")
+	public ResponseEntity<Map<String, Object>> getMutation(){
+		return ResponseEntity.ok(cadenaAdnService.getMapMutation(true));
+	}
+	
+	@GetMapping(value= "/getNoMutation")
+	public ResponseEntity<Map<String, Object>> getNoMutation(){
+		return ResponseEntity.ok(cadenaAdnService.getMapMutation(false));
 	}
 
 }
