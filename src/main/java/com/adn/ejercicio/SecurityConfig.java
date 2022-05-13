@@ -3,7 +3,6 @@ package com.adn.ejercicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,6 +17,8 @@ import com.adn.ejercicio.services.UsuarioService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	static final String LOGIN_URL = "/login";
 	
 	@Autowired
 	private UsuarioService userDetailService; 
@@ -44,27 +45,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 protected void configure(HttpSecurity http) throws Exception {
 		 http.authorizeRequests()
          .antMatchers(resources).permitAll()
-         .antMatchers("/login").permitAll()
+         .antMatchers(LOGIN_URL).permitAll()
          .antMatchers("/mutation/**").permitAll()
          .antMatchers("/cadenaAdn/**").permitAll()
-         .antMatchers(HttpMethod.POST, "/mutation/**").permitAll()
          .anyRequest().authenticated()
          .and()
              .formLogin()
-             .loginPage("/login")
+             .loginPage(LOGIN_URL)
              .defaultSuccessUrl("/inicio")
              .failureUrl("/login?error=true")
              .permitAll()
          .and()
              .logout()
              .logoutUrl("/logout")   
-             .logoutSuccessUrl("/login")
+             .logoutSuccessUrl(LOGIN_URL)
              .invalidateHttpSession(true)
              .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
              .permitAll()
           .and()
              .csrf()
-                 .ignoringAntMatchers("/mutation/", "/mutation/index");
+                 .ignoringAntMatchers("/mutation/**");
 	 }
 
 	
