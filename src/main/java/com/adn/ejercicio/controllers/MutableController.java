@@ -1,6 +1,7 @@
 package com.adn.ejercicio.controllers;
 
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 
@@ -38,11 +39,12 @@ public class MutableController {
 	public ResponseEntity<Object> index(@RequestBody  Map<String, Object> params){
 		
 		List<String> dna =  (List<String>) params.get("dna");
+		String nombre = params.get("nombre").toString();
 				
 		String[] cadenasAdn = new String[dna.size()];
 		cadenasAdn = dna.toArray(cadenasAdn);
 		
-		boolean hasMutation = cadenaAdnService.create(new CadenaAdn(cadenasAdn)).getMutation();
+		boolean hasMutation = cadenaAdnService.create(new CadenaAdn(cadenasAdn, nombre)).getMutation();
 			
 		if (Boolean.TRUE.equals(hasMutation)) {
 			return ResponseEntity.status(200).build();
@@ -54,6 +56,18 @@ public class MutableController {
 	@GetMapping(value= "/status")
 	public ResponseEntity<Object> status(){
 		return ResponseEntity.ok(cadenaAdnService.getStatus());
+	}
+
+	@PostMapping(value= {"/saveHumano"})
+	public ResponseEntity<Object> saveHumano(@RequestBody  Map<String, Object> params){
+				
+		String nombre = params.get("nombre").toString();
+
+		
+		String[] cadenasAdn =  cadenaAdnService.generateRandomAdn();
+		CadenaAdn instancia  = cadenaAdnService.create(new CadenaAdn(cadenasAdn, nombre));
+		
+		return ResponseEntity.status(200).body(instancia);
 	}
 }
 
