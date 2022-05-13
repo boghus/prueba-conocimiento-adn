@@ -1,0 +1,18 @@
+<div th:fragment="nuevoHumano">
+    <div class="modal fade" id="nuevoHumano" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center rounded">
+                    <div class="circulo circulo-verde mb-5"></div>
+                    <form method="POST" th:action="@{/login}">
+                        <p>
+                            <input type="text" id="nombre" name="nombre" 
+                                placeholder="Nombre de humano" required autofocus>
+                        </p>
+                        <button class="button-yellow mt-5" type="submit">Crear humano</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

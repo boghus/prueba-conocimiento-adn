@@ -1,0 +1,67 @@
+.circleBase {
+    border-radius: 50%;
+}
+
+
+.circuloY {
+    width: 200px; 
+    height: 100px; 
+    background: #bbf2f5;
+    border-radius: 0  0 100px 100px;
+    position: absolute;
+    left: 300px;
+
+    
+}
+
+.circuloX {
+
+    border: 2px solid #abdef3; 
+    background: #abdef3;
+    margin-top: 30px;
+    margin-left: -10px;
+    width: 200px;
+    height: 400px;
+    border-radius: 100% / 50%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    opacity: 0.9;
+
+
+}
+.mini {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #d8e1fe;
+    position: absolute;
+    left: 190px;
+    top: 200px;
+    opacity: 0.6;
+
+}
+
+.circulo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.circulo-verde {
+    background: green;
+}
+
+.circulo-rojo {
+    background: red;
+}
+
+.circulo-azul {
+    background: blue;
+}
+
+.circulo-50{
+    width: 50px !important;
+    height: 50px !important ;
+}
+

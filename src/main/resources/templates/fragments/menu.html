@@ -1,0 +1,47 @@
+<div th:fragment="menu">
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand px-4">ADN Detector</a>
+		<ul class="nav nav-pills ms-auto flex-nowrap">
+			<li class="nav-item dropdown">
+				
+				<button class="navbar-toggler" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="/logout">Cerrar sessión</a></li>
+				</ul>
+			
+			</li>
+		</ul>
+	</nav>
+
+    <div class="container-flex bg-primary container-round text-center">
+        <div class="row">
+			<div class="col-3">
+                <!-- <a class="btn btn-danger" href="#" role="button">Nuevo humano</a> -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#nuevoHumano">
+                    Nuevo Humano
+                </button>
+            </div>
+            <div class="col-3">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#analizarHumanos">
+                    Analizar humanos
+                </button>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-primary" id="button-mutation" href="/mutation" role="button">Con mutación</a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-primary"  id="button-no-mutation" href="/noMutation" role="button">Sin mutación</a>
+            </div>
+        </div>     
+    </div>
+
+    <div th:replace="fragments/nuevoHumano" :: "nuevoHumano"></div>
+    <div th:replace="fragments/analizarHumanos" :: "analizarHumanos"></div>
+
+    <script>
+      
+
+    </script>
+</div>

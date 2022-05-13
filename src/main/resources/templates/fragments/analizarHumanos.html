@@ -1,0 +1,36 @@
+<div th:fragment="analizarHumanos">
+
+   
+    <div class="modal fade" id="analizarHumanos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center rounded">
+                    
+                    <h3>ADN Detector</h3>
+                    <p id="statusMutationMessage"></p> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const myModal = document.getElementById('analizarHumanos');
+
+       
+        myModal.addEventListener('show.bs.modal', async function () {
+            //Consumir web service y pintar la card
+            
+            const response = await fetch('/mutation/status');
+            const responseJson = await response.json();
+
+            let message = "CM: " + responseJson.count_mutations ;
+            message += " SM: " + responseJson.count_no_mutation;
+            
+            $("#statusMutationMessage").html(message);
+
+          
+        })
+
+    </script>
+</div>
