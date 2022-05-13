@@ -2,7 +2,6 @@ function createCard(item){
     let mutation 
     let circulo
 
-
     if (item.mutation){
         mutation = '<p class="text-danger">CON MUTACIÓN</p>';
         circulo = '<div class="circulo circulo-rojo circulo-50 mb-5"></div>';
@@ -17,11 +16,10 @@ function createCard(item){
                         '<div class="row">' +
                             '<div class="col-3">' + circulo +'</div>' +
                             '<div class="col-9">' +
-                                '<h5>Humano</h5>'+
-                                '<p>Creado: ' +
+                                '<h6>'+item.nombre+'</h6>'+
+                                '<small>Creado: ' +
                                     $.datepicker.formatDate('yy/M/dd', new Date(item.dateCreated)) +
-                                '</p>'+
-                                
+                                '</small>'+
                             '</div>' +
                         '</div>' +
                         '<div class="row">' +
