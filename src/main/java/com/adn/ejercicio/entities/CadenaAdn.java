@@ -24,6 +24,8 @@ public class CadenaAdn implements Serializable {
 	private Date dateCreated;
 	
 	private Boolean mutation;
+
+	private String nombre ;
 	
 	
 	
@@ -44,10 +46,13 @@ public class CadenaAdn implements Serializable {
 	
 	
 	
-	public CadenaAdn(String[] cadenas) {
+	public CadenaAdn(String[] cadenas, String nombre ) {
 		super();
 		this.cadenas = cadenas;
+		this.nombre = nombre;
 	}
+		
+
 	
 	public Long getId() {
 		return id;
@@ -69,19 +74,21 @@ public class CadenaAdn implements Serializable {
 		this.dateCreated = dateCreated;
 	}
 
-
-
-
-
 	public Boolean getMutation() {
 		return mutation;
 	}
 
-
-
-
-
 	public void setMutation(Boolean mutation) {
 		this.mutation = mutation;
 	}
+
+	public String getNombre(){
+		return nombre;
+	}
+
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	
+
 }
