@@ -13,18 +13,28 @@
 <body>
 	
 	<div th:replace="fragments/menu" :: "menu"></div>
-	<div class="container" id="containerNoMutation"></div>
+	<div class="container" id="containerNoMutation">
+		<div class="alert alert alert-danger m-4" id="alertNoMutation" role="alert">
+			No se encuentran registros
+		</div>
+	</div>
 
 	
 	
 	
 	<script>
+		$('#alertNoMutation').hide();
 		
 		$( document ).ready(async function() {
 			const response = await fetch('/cadenaAdn/getNoMutation');
 			const responseJson = await response.json();
 			$('#containerNoMutation').append(generateCardsHtml(responseJson));
 
+			if(responseJson.total > 0){
+				$('#alertNoMutation').hide();
+			}else{
+				$('#alertNoMutation').show();
+			}
 			
 
 			$('#button-no-mutation').addClass('active');
