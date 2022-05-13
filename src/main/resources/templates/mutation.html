@@ -13,9 +13,16 @@
 <body>
 	
 	<div th:replace="fragments/menu" :: "menu"></div>
-	<div class="container" id="containerNoMutation"></div>
+	<div class="container" id="containerMutation">
+		<div class="alert alert alert-danger m-4" id="alertMutation" role="alert">
+			No se encuentran registros
+		</div>
+	</div>
+
+	
 
 	<script>
+		$('#alertMutation').hide();
 		
 		$( document ).ready(async function() {
 			const response = await fetch('/cadenaAdn/getMutation');
@@ -24,6 +31,12 @@
 
 			$('#button-mutation').addClass('active');
 			$('#button-no-mutation').removeClass('active');
+
+			if(responseJson.total > 0){
+				$('#alertMutation').hide();
+			}else{
+				$('#alertMutation').show();
+			}
 
 	
 		});
